@@ -1,0 +1,1 @@
+{"py/object": "__main__.TestClass", "name": "John", "age": 21, "sub_object": {"py/object": "__main__.SubObject", "sub_name": "John jr.", "sub_age": 2}}
