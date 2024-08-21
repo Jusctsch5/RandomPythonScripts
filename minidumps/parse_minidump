@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export PATH="${PATH}:./bins/"
+
+ /usr/bin/python3 ./parse_minidump.py $@

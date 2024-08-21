@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import requests
+import os
+import sys
+import uuid
+import shutil
+import subprocess
+
+
+symbols_base_url = "https://repository.mdh.quantum.com:8443/repository/symbols"
+minidump_base_url = base_url = "https://repository.mdh.quantum.com:8443/repository/minidumps"
+
+minidump_uuid = sys.argv[1]
+
+minidump_url = minidump_base_url + "/" + minidump_uuid;
+tmpdir = "/tmp/" + str(uuid.uuid4())
+minidump_file = tmpdir + "/minidump"
+symdir = tmpdir + "/symbols"
+
+print("Using temporary dir " + tmpdir)
+os.mkdir(tmpdir)
+os.mkdir(symdir)
+
+print("Fetching minidump from " + minidump_url)
+
+response = requests.get(minidump_url, stream=True)
+
+with open(minidump_file, "wb") as handle:
+    for data in response.iter_content():
+        handle.write(data)
+
+if response.status_code != 200:
+    print("Failed to obtain minidump, check if provided crash ID is valid")
+else:
+    print("Successfully downloaded minidump.")
+
+    print("Extracting needed symbols from minidump...")
+    result = subprocess.run(["/opt/quantum/breakpad/bin/minidump_stackwalk", "-m", minidump_file], capture_output=True)
+
+    output = result.stdout.decode("utf-8")
+   
+    print("Fetching needed symbols...") 
+    for line in output.splitlines():
+        columns = line.split('|')
+
+        if columns[0] == "Module":
+            sym_id = columns[4]
+
+            sym_url = symbols_base_url + "/"
+            for i in range(0, len(sym_id), 2):
+                sym_url += sym_id[i:i+2] + "/"
+
+            sym_url += sym_id
+
+            response = requests.get(sym_url)
+
+            if response.status_code == 200:
+
+                header = response.text.splitlines()[0]
+
+                columns = header.split(" ")
+
+                name = columns[4]
+
+                os.mkdir(symdir + "/" + name)
+                os.mkdir(symdir + "/" + name + "/" + sym_id)
+                sym_file = symdir + "/" + name + "/" + sym_id + "/" + name + ".sym"
+
+                with open(sym_file, "wb") as handle:
+                    handle.write(response.text.encode("utf-8"))
+
+    result = subprocess.run(["/opt/quantum/breakpad/bin/minidump_stackwalk", "-s", minidump_file, symdir], capture_output=True)
+
+    output = result.stdout.decode("utf-8")
+
+    print(output)
+
+print("Removing temporary directory...")
+shutil.rmtree(tmpdir)

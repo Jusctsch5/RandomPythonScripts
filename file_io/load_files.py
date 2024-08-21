@@ -3,12 +3,10 @@
 import os
 import time
 import threading
-from random import Random, randint
 from argparse import ArgumentParser
 from tqdm import tqdm #  python3 -m pip install tqdm
 import datetime
 from enum import IntEnum
-import glob
 
 # ./fileload.py --filesize 1048576 --iotype 2 --dst /cloud/nfs1/ --files 10 --threads 70 --sustain --timeout 6000
 # ./fileload.py --filesize 5120 --iotype 2 --dst /cloud/nfs1/ --files 10 --threads 10
@@ -57,7 +55,7 @@ def write_file(iFileName, iFileSize, iBlockSize, iIOType= IoType.ZERO, fsync=Tru
         buf = '\0' * 1024
     elif iIOType == IoType.RAND:
         buf = os.urandom(iBlockSize)
-    
+
     try:
         fh = os.open(iFileName, os.O_CREAT | os.O_TRUNC | os.O_WRONLY)
         while alive:
@@ -100,13 +98,13 @@ def generate_files(thread_id, iFileSizeKB, iIOType, bs=1024, dst=None, files=500
     size = iFileSizeKB
     start_time = datetime.datetime.now()
     pbar = tqdm(total=files*size*1024, position=thread_id, unit='B', unit_scale=True, unit_divisor=1024)
-
+    iteration = 0
     while True:
 
         current_ct = 0
 
         while current_ct < files:
-            pbar.set_description("thread-"+str(thread_id), refresh=True)
+            pbar.set_description(f"thread:{str(thread_id)} file:{current_ct}-{files} iter:{iteration}", refresh=True)
             if not alive:
                 return
 
@@ -121,10 +119,12 @@ def generate_files(thread_id, iFileSizeKB, iIOType, bs=1024, dst=None, files=500
             current_ct += 1
 
         now_time = datetime.datetime.now().timestamp()
-        if  (sustain == False) or (now_time > start_time.timestamp() + timeout):
+        if  (sustain == False) or (timeout != 0 and now_time > start_time.timestamp() + timeout):
             # pbar.close()
             # print("break because startnow_time:{}> start_time.timestamp():{} + timeout:{}".format(now_time, start_time.timestamp(), timeout))
             break
+
+        iteration = iteration + 1
 
         pbar.reset()
 
@@ -137,12 +137,12 @@ def generate_file_load_threads(file_load_job_parameters):
         directory = file_load_job_parameters.destination + "/thread-" + str(i)
 
         t = threading.Thread(target=generate_files, args=(i,
-                                                   file_load_job_parameters.file_size_kb, 
-                                                   file_load_job_parameters.io_type, 
+                                                   file_load_job_parameters.file_size_kb,
+                                                   file_load_job_parameters.io_type,
                                                    file_load_job_parameters.io_byte_size,
-                                                   directory, 
+                                                   directory,
                                                    file_load_job_parameters.file_count,
-                                                   file_load_job_parameters.sustain, 
+                                                   file_load_job_parameters.sustain,
                                                    file_load_job_parameters.timeout))
         thrs.append(t)
         t.start()
@@ -156,8 +156,8 @@ def generate_file_load_threads(file_load_job_parameters):
     done = datetime.datetime.now()
 
     # Let output finish...
-    time.sleep(2)   
- 
+    time.sleep(2)
+
     #print("\nStart:" + str(start))
     #print("Finished:" + str(done))
     #print("Difference:"  + str(done-start))
@@ -167,7 +167,7 @@ def main():
     parser = ArgumentParser(description='File generation utility.')
     parser.add_argument('--filesize', type=int, required=True,
                         help='file size in KiB')
-    parser.add_argument('--iotype', '-f', dest='iotype', type=int, required=False, choices=list(map(int, IoType)), 
+    parser.add_argument('--iotype', '-f', dest='iotype', type=int, required=False, choices=list(map(int, IoType)),
                         default=IoType.RAND, help='io type')
     parser.add_argument('--dst', dest='dst', type=str, required=False,
                         help='destination directory')
@@ -178,9 +178,9 @@ def main():
     parser.add_argument('--threads', dest="threads", type=int, required=False,
                         default=g_thread_count, help='thread count')
     parser.add_argument('--sustain', action='store_true', default=False, required=False,
-                        help='should writes be sustained')                        
+                        help='should writes be sustained')
     parser.add_argument('--timeout', dest="timeout", type=int, required=False,
-                        default=0, help='timeout of writes')                                                
+                        default=0, help='timeout of writes')
 
     args = parser.parse_args()
 
