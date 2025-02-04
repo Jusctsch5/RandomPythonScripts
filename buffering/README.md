@@ -1,0 +1,1 @@
+These scripts test buffering capabilities between the OS, sys.stdout, and python print &  logging modules
