@@ -1,0 +1,659 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh edit jss-0-lb-437d2932
+or other application using the libvirt API.
+-->
+
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>jss-0-lb-437d2932</name>
+  <uuid>5a6f2fc8-db53-4b70-89d8-139284d60629</uuid>
+  <memory unit='KiB'>16777216</memory>
+  <currentMemory unit='KiB'>16777216</currentMemory>
+  <vcpu placement='static'>2</vcpu>
+  <resource>
+    <partition>/machine</partition>
+  </resource>
+  <sysinfo type='fwcfg'>
+    <entry name='opt/org.tianocore/IPv6PXESupport'>n</entry>
+  </sysinfo>
+  <sysinfo type='smbios'>
+    <system>
+      <entry name='manufacturer'>Quantum</entry>
+      <entry name='product'>Virtual Leaf Node</entry>
+      <entry name='version'>1.0.0</entry>
+      <entry name='serial'>437d2932</entry>
+      <entry name='uuid'>5a6f2fc8-db53-4b70-89d8-139284d60629</entry>
+    </system>
+  </sysinfo>
+  <os>
+    <type arch='x86_64' machine='pc-q35-7.2'>hvm</type>
+    <loader readonly='yes' secure='no' type='pflash'>/data/qkp-kvm/jss-0/ovmf/OVMF_CODE-2023-02-28_02:08:58_ovfm-fff6d81270.fd</loader>
+    <nvram template='/data/qkp-kvm/jss-0/ovmf/OVMF_TEMPLATE_VARS-2023-02-28_02:08:58_ovfm-fff6d81270.fd'>/var/lib/libvirt/qemu/nvram/jss-0-lb-437d2932_VARS.fd</nvram>
+    <boot dev='network'/>
+    <bios rebootTimeout='0'/>
+    <smbios mode='sysinfo'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+  </features>
+  <cpu mode='host-model' check='partial'/>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/data/qkp-kvm/jss-0/qemu/bin/qemu-system-x86_64</emulator>
+    <disk type='volume' device='disk'>
+      <driver name='qemu' type='qcow2' cache='unsafe'/>
+      <source pool='jss-0' volume='jss-0-lb-437d2932-root'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x25' slot='0x00' function='0x0'/>
+    </disk>
+    <controller type='usb' index='0' model='piix3-uhci'>
+      <address type='pci' domain='0x0000' bus='0x23' slot='0x01' function='0x0'/>
+    </controller>
+    <controller type='sata' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+    </controller>
+    <controller type='pci' index='0' model='pcie-root'/>
+    <controller type='virtio-serial' index='0'>
+      <address type='pci' domain='0x0000' bus='0x24' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='pci' index='1' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='1' port='0x8'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='2' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='2' port='0x9'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <controller type='pci' index='3' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='3' port='0xa'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+    </controller>
+    <controller type='pci' index='4' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='4' port='0xb'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x3'/>
+    </controller>
+    <controller type='pci' index='5' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='5' port='0xc'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x4'/>
+    </controller>
+    <controller type='pci' index='6' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='6' port='0xd'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x5'/>
+    </controller>
+    <controller type='pci' index='7' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='7' port='0xe'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x6'/>
+    </controller>
+    <controller type='pci' index='8' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='8' port='0xf'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x7'/>
+    </controller>
+    <controller type='pci' index='9' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='9' port='0x10'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='10' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='10' port='0x11'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
+    </controller>
+    <controller type='pci' index='11' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='11' port='0x12'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
+    </controller>
+    <controller type='pci' index='12' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='12' port='0x13'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x3'/>
+    </controller>
+    <controller type='pci' index='13' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='13' port='0x14'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x4'/>
+    </controller>
+    <controller type='pci' index='14' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='14' port='0x15'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x5'/>
+    </controller>
+    <controller type='pci' index='15' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='15' port='0x16'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x6'/>
+    </controller>
+    <controller type='pci' index='16' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='16' port='0x17'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x7'/>
+    </controller>
+    <controller type='pci' index='17' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='17' port='0x18'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='18' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='18' port='0x19'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x1'/>
+    </controller>
+    <controller type='pci' index='19' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='19' port='0x1a'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x2'/>
+    </controller>
+    <controller type='pci' index='20' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='20' port='0x1b'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x3'/>
+    </controller>
+    <controller type='pci' index='21' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='21' port='0x1c'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x4'/>
+    </controller>
+    <controller type='pci' index='22' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='22' port='0x1d'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x5'/>
+    </controller>
+    <controller type='pci' index='23' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='23' port='0x1e'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x6'/>
+    </controller>
+    <controller type='pci' index='24' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='24' port='0x1f'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x7'/>
+    </controller>
+    <controller type='pci' index='25' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='25' port='0x20'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='26' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='26' port='0x21'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x1'/>
+    </controller>
+    <controller type='pci' index='27' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='27' port='0x22'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x2'/>
+    </controller>
+    <controller type='pci' index='28' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='28' port='0x23'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x3'/>
+    </controller>
+    <controller type='pci' index='29' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='29' port='0x24'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x4'/>
+    </controller>
+    <controller type='pci' index='30' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='30' port='0x25'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x5'/>
+    </controller>
+    <controller type='pci' index='31' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='31' port='0x26'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x6'/>
+    </controller>
+    <controller type='pci' index='32' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='32' port='0x27'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x7'/>
+    </controller>
+    <controller type='pci' index='33' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='33' port='0x28'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='34' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='34' port='0x29'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1'/>
+    </controller>
+    <controller type='pci' index='35' model='pcie-to-pci-bridge'>
+      <model name='pcie-pci-bridge'/>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='pci' index='36' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='36' port='0x2a'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
+    </controller>
+    <controller type='pci' index='37' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='37' port='0x2b'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x3'/>
+    </controller>
+    <controller type='pci' index='38' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='38' port='0x2c'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x4'/>
+    </controller>
+    <controller type='pci' index='39' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='39' port='0x2d'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x5'/>
+    </controller>
+    <interface type='udp'>
+      <mac address='52:54:00:6d:c1:95'/>
+      <source address='169.254.250.1' port='20021'>
+        <local address='169.254.250.5' port='20021'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:e3:c2:9b'/>
+      <source address='169.254.250.6' port='21100'>
+        <local address='169.254.250.5' port='21100'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:8f:14:4f'/>
+      <source address='169.254.250.7' port='21101'>
+        <local address='169.254.250.5' port='21101'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:7c:b5:8e'/>
+      <source address='169.254.250.8' port='21102'>
+        <local address='169.254.250.5' port='21102'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:18:d1:bf'/>
+      <source address='169.254.250.9' port='21103'>
+        <local address='169.254.250.5' port='21103'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:68:89:65'/>
+      <source address='169.254.250.10' port='21104'>
+        <local address='169.254.250.5' port='21104'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:e8:a9:26'/>
+      <source address='169.254.250.11' port='21105'>
+        <local address='169.254.250.5' port='21105'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:96:4f:13'/>
+      <source address='169.254.250.12' port='21106'>
+        <local address='169.254.250.5' port='21106'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:ec:62:22'/>
+      <source address='169.254.250.13' port='21107'>
+        <local address='169.254.250.5' port='21107'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:67:f0:4e'/>
+      <source address='169.254.250.5' port='21108'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0b' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:b5:2e:3b'/>
+      <source address='169.254.250.5' port='21109'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0c' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:86:8d:1d'/>
+      <source address='169.254.250.5' port='21110'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0d' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:d0:ac:31'/>
+      <source address='169.254.250.5' port='21111'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0e' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:f1:09:d3'/>
+      <source address='169.254.250.5' port='21112'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x0f' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:39:29:e2'/>
+      <source address='169.254.250.5' port='21113'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x10' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:61:aa:6a'/>
+      <source address='169.254.250.5' port='21114'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x11' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:0d:0c:54'/>
+      <source address='169.254.250.5' port='21115'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x12' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:2e:81:44'/>
+      <source address='169.254.250.6' port='21116'>
+        <local address='169.254.250.5' port='21116'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x13' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:56:ba:bc'/>
+      <source address='169.254.250.7' port='21117'>
+        <local address='169.254.250.5' port='21117'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x14' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:f1:66:6b'/>
+      <source address='169.254.250.8' port='21118'>
+        <local address='169.254.250.5' port='21118'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x15' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:2f:5c:40'/>
+      <source address='169.254.250.9' port='21119'>
+        <local address='169.254.250.5' port='21119'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x16' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:b1:d6:0d'/>
+      <source address='169.254.250.10' port='21120'>
+        <local address='169.254.250.5' port='21120'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x17' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:3d:57:1b'/>
+      <source address='169.254.250.11' port='21121'>
+        <local address='169.254.250.5' port='21121'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x18' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:83:14:84'/>
+      <source address='169.254.250.12' port='21122'>
+        <local address='169.254.250.5' port='21122'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x19' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:0a:67:0d'/>
+      <source address='169.254.250.13' port='21123'>
+        <local address='169.254.250.5' port='21123'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1a' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:c9:28:e5'/>
+      <source address='169.254.250.5' port='21124'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1b' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:a9:9f:6f'/>
+      <source address='169.254.250.5' port='21125'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1c' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:62:f2:57'/>
+      <source address='169.254.250.5' port='21126'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1d' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='server'>
+      <mac address='52:54:00:b2:92:fe'/>
+      <source address='169.254.250.5' port='21127'/>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1e' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:5b:c0:75'/>
+      <source address='169.254.250.2' port='22003'>
+        <local address='169.254.250.5' port='22003'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x1f' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:bf:a0:28'/>
+      <source address='169.254.250.2' port='22004'>
+        <local address='169.254.250.5' port='22004'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x20' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:50:f4:b7'/>
+      <source address='169.254.250.3' port='22103'>
+        <local address='169.254.250.5' port='22103'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x21' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='udp'>
+      <mac address='52:54:00:37:84:08'/>
+      <source address='169.254.250.3' port='22104'>
+        <local address='169.254.250.5' port='22104'/>
+      </source>
+      <model type='virtio'/>
+      <driver name='vhost'>
+        <guest csum='off' tso4='off' tso6='off'/>
+      </driver>
+      <rom bar='off' file=''/>
+      <address type='pci' domain='0x0000' bus='0x22' slot='0x00' function='0x0'/>
+    </interface>
+    <serial type='pty'>
+      <log file='/data/qkp-kvm/jss-0/logs/jss-0-lb-437d2932.log' append='off'/>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+    </serial>
+    <console type='pty'>
+      <log file='/data/qkp-kvm/jss-0/logs/jss-0-lb-437d2932.log' append='off'/>
+      <target type='serial' port='0'/>
+    </console>
+    <console type='pty'>
+      <target type='virtio' port='1'/>
+    </console>
+    <channel type='unix'>
+      <source mode='bind' path='/var/lib/libvirt/qemu/f16x86_64.agent'/>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+    </channel>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <audio id='1' type='none'/>
+    <memballoon model='virtio' autodeflate='on'>
+      <address type='pci' domain='0x0000' bus='0x26' slot='0x00' function='0x0'/>
+    </memballoon>
+  </devices>
+  <qemu:commandline>
+    <qemu:arg value='-pidfile'/>
+    <qemu:arg value='/var/run/qkp-kvm/pidfiles/jss-0-lb-437d2932.pid'/>
+  </qemu:commandline>
+</domain>

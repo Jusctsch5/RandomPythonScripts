@@ -1,0 +1,24 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit jss-0-public
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>jss-0-public</name>
+  <uuid>039dfc85-22ed-42a2-aaba-ca801f983b88</uuid>
+  <forward mode='nat'>
+    <nat ipv6='no'>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='jss-0-public' stp='on' delay='0'/>
+  <mac address='52:54:00:51:c9:8a'/>
+  <ip address='192.168.250.9' netmask='255.255.255.248'>
+  </ip>
+  <route address='192.168.250.16' prefix='28' gateway='192.168.250.10'/>
+  <route address='192.168.250.32' prefix='27' gateway='192.168.250.10'/>
+  <route address='192.168.250.16' prefix='28' gateway='192.168.250.11'/>
+  <route address='192.168.250.64' prefix='27' gateway='192.168.250.11'/>
+</network>

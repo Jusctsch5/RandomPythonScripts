@@ -1,0 +1,38 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit jss-0-mgmt
+or other application using the libvirt API.
+-->
+
+<network xmlns:dnsmasq='http://libvirt.org/schemas/network/dnsmasq/1.0'>
+  <name>jss-0-mgmt</name>
+  <uuid>6fd432fb-1b86-4bd9-99b9-0a2a59c90101</uuid>
+  <forward mode='nat'>
+    <nat ipv6='no'>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='jss-0-mgmt' stp='on' delay='0'/>
+  <mac address='52:54:00:94:eb:02'/>
+  <ip address='192.168.250.1' netmask='255.255.255.248'>
+    <tftp root='/data/qkp-kvm/jss-0/boot'/>
+    <dhcp>
+      <host mac='00:16:3e:3e:a9:10' ip='192.168.250.2'/>
+      <host mac='00:16:3e:3e:a9:11' ip='192.168.250.3'/>
+      <host mac='00:16:3e:3e:a9:12' ip='192.168.250.4'/>
+    </dhcp>
+  </ip>
+  <dnsmasq:options>
+    <dnsmasq:option value='dhcp-mac=set:mgmt,00:16:3e:3e:a9:10'/>
+    <dnsmasq:option value='dhcp-option=tag:mgmt,114,http://public:CWH1umKWmwqRwfeXPJis@repository.mdh.quantum.com/repository/pkgs/qkp/1.6.0-dev.75/5263/sonic-vs-mgmt/amd64/sonic.bin'/>
+    <dnsmasq:option value='dhcp-mac=set:csw1,00:16:3e:3e:a9:11'/>
+    <dnsmasq:option value='dhcp-option=tag:csw1,option:bootfile-name,tftp://192.168.250.1/00:16:3e:3e:a9:11/ztp'/>
+    <dnsmasq:option value='dhcp-option=tag:csw1,239,tftp://192.168.250.1/00:16:3e:3e:a9:11/ztp'/>
+    <dnsmasq:option value='dhcp-option=tag:csw1,114,http://public:CWH1umKWmwqRwfeXPJis@repository.mdh.quantum.com/repository/pkgs/qkp/1.6.0-dev.75/5263/sonic-vs-leaf/amd64/sonic.bin'/>
+    <dnsmasq:option value='dhcp-mac=set:csw2,00:16:3e:3e:a9:12'/>
+    <dnsmasq:option value='dhcp-option=tag:csw2,option:bootfile-name,tftp://192.168.250.1/00:16:3e:3e:a9:12/ztp'/>
+    <dnsmasq:option value='dhcp-option=tag:csw2,239,tftp://192.168.250.1/00:16:3e:3e:a9:12/ztp'/>
+    <dnsmasq:option value='dhcp-option=tag:csw2,114,http://public:CWH1umKWmwqRwfeXPJis@repository.mdh.quantum.com/repository/pkgs/qkp/1.6.0-dev.75/5263/sonic-vs-leaf/amd64/sonic.bin'/>
+  </dnsmasq:options>
+</network>

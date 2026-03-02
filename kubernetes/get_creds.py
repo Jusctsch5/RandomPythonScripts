@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import os
 from kubernetes import client, config
 
 # Load the Kubernetes configuration from the default location (e.g., ~/.kube/config)
